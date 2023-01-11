@@ -19,12 +19,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@200;300;400;500;600;700;800;900&display=swap');
 
 @layer utilities {
-    input[type="number"]::-webkit-inner-spin-button,
-    input[type="number"]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
+}
 
 
 
@@ -36,138 +37,34 @@
 
 
   body {
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
--webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
   }
 
 
-    .icon {
-        @apply h-6 w-6 mr-1 hover:scale-125 transform transition duration-200
-    }
-    .dark{
-        @apply bg-black text-white border-gray-800 
-    }
-    .light{
-        @apply bg-gray-100 text-black border-gray-300 
-    }
-
-    .header
-    {
-        @apply font-bold p-1 text-xl mt-10
-    }
-     
-    .para
-    {
-        @apply pb-3
-    }
 
 
-    
-    .partitioned {
-            
-        padding-left: 15px;
-        padding-bottom: 5px;
-        letter-spacing: 41px;
-        border: 0;
-        background-image: linear-gradient(to left, black 70%, rgba(255, 255, 255, 0) 0%);
-        background-position: bottom;
-        background-size: 50px 1px;
-        background-repeat: repeat-x;
-        background-position-x: 35px;
-        width: 275px;
-        outline: none;
-    }
 
 
-    .divInner {
-        left: 0;
-        position: sticky;
-    }
-    
-    .divOuter {
-        width: 200px;
-        overflow: hidden;
-    }
- 
-    .switch {
-        position: relative;
-        width: 45px;
-        height: 25px;
-      }
-      
-      /* Hide default HTML checkbox */
-      .switch input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-      }
-      
-      /* The slider */
-      .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: #ccc;
-        -webkit-transition: .4s;
-        transition: .4s;
-      }
-      
-      .slider:before {
-        position: absolute;
-        content: "";
-        height: 20px;
-        width: 20px;
-        left: 4px;
-        bottom: 3px;
-        background-color: white;
-        -webkit-transition: .4s;
-        transition: .4s;
-      }
-      
-      input:checked + .slider {
-        background-color: #458b8a;
-      }
-      
-      input:focus + .slider {
-        box-shadow: 0 0 1px #2196F3;
-      }
-      
-      input:checked + .slider:before {
-        -webkit-transform: translateX(17px);
-        -ms-transform: translateX(17px);
-        transform: translateX(17px);
-      }
-      
-      /* Rounded sliders */
-      .slider.round {
-        border-radius: 34px;
-      }
-      
-      .slider.round:before {
-        border-radius: 50%;
-      }
+
+  /*Button Hover Background  */
+  .hoverBackground {
+    background-image: linear-gradient(#1670CD, #3497FD);
+  }
+
+  .loginBTN_BG {
+    background-image: linear-gradient(#0F2027, #203A43, #2C5364);
+  }
 
 
-      /* Grid */
+  .gradientBlue {
+    background: -webkit-linear-gradient(#1670CD, #3497FD);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 
-      .gridClass{
-        grid-template-columns:1fr 4fr 2fr 2fr 3fr 3fr
-      }
+
+  }
 
 
-/*Button Hover Background  */
-      .hoverBackground
-      {
-          background-image: linear-gradient(#1670CD,#3497FD);
-      }
 
-      .loginBTN_BG{
-        background-image: linear-gradient(#0F2027, #203A43, #2C5364);
-      }
-      
-    
-    
 }

@@ -2,16 +2,15 @@ import React, { useContext, useState } from 'react'
 import { CheckCircleIcon } from '@heroicons/react/solid'
 import { XCircleIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
-import videosContext from '../../context/videos/videosContext'
 import Router, { useRouter } from 'next/router';
 import ClipLoader from "react-spinners/ClipLoader";
 import { setCookie, deleteCookie } from "cookies-next";
-
+import MemesContext from '../../context/MemesContext';
 export const PasswordReset = () => {
     const router = useRouter();
 
 
-    const { OTPemail } = useContext(videosContext)
+    const { OTPemail } = useContext(MemesContext)
 
     const [Email, setEmail] = useState('')
     const [OTP, setOTP] = useState('')

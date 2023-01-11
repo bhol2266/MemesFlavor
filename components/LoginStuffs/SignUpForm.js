@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { CheckCircleIcon } from '@heroicons/react/solid'
 import { XCircleIcon, FolderDownloadIcon, ChatIcon } from '@heroicons/react/solid'
-import videosContext from '../../context/videos/videosContext'
 import { BeatLoader } from 'react-spinners'
 import ClipLoader from "react-spinners/ClipLoader";
 import Router, { useRouter } from 'next/router'
 import { setCookie, deleteCookie } from "cookies-next";
+import MemesContext from '../../context/MemesContext';
 
 
 export const SignUpForm = () => {
@@ -116,43 +116,22 @@ export const SignUpForm = () => {
 
 
 
-        <div className={`bg-no-repeat bg-cover	bg-opacity-80 w-full mb-[200px] sm:w-4/5 md:w-3/5 lg:w-2/5 xl:w-[450px] mx-auto`}>
+        <div className={`bg-no-repeat bg-cover	bg-opacity-80 w-full mb-[200px] sm:w-4/5 md:w-3/5 lg:w-2/5 xl:w-[450px] mx-auto mt-[30px] lg:left-[110px] relative xl:left-0 xl:right-0`}>
 
 
 
-            <div className='px-[28px]  w-full'>
+
+            <div className='  w-full'>
+
+                <img src='/navbar/memeflavour.svg' alt='' className='  h-[30px] sm:h-[34px] lg:hidden mx-auto' />
+
+
+                <img src='/login/registerMobile.svg' className=' h-[18px] my-4 mx-auto lg:hidden '></img>
+
+                <img src='/login/registerHead.svg' className='hidden lg:block  h-[90px]  2xl:h-[100px] mb-8 pt-4 3xl:pt-6'></img>
 
 
 
-                <h2 className=' mt-[20px] text-[#323232]  text-[20px] font-inter font-medium mb-6'>
-                    Join Chutlunds for free
-                </h2>
-
-
-                <div className='flex flex-col space-y-1 xl:space-y-2 x'>
-                    <div className='flex items-center space-x-3 xl:space-x-4 font-inter'>
-                        <img src='/login/download.png' className='text-red-600 h-[18px] xl:h-[24px] ' />
-                        <span className='text-[12px] lg:text-[14px]'>Free download any video
-                        </span>
-                    </div>
-                    <div className='flex items-center space-x-3 xl:space-x-4 font-inter'>
-                        <img src='/login/heart.png' className='text-red-600 h-[18px] xl:h-[24px] ' />
-                        <span className='text-[12px] lg:text-[14px]'>Save your favorites
-                        </span>
-                    </div>
-
-                    <div className='flex items-center space-x-3 xl:space-x-4 font-inter'>
-                        <img src='/login/ai.png' className='text-red-600 h-[18px] xl:h-[24px] ' />
-                        <span className='text-[12px] lg:text-[14px]'>Enjoy video Recommendations
-                        </span>
-                    </div>
-                    <div className='flex items-center space-x-3 xl:space-x-4 font-inter'>
-                        <img src='/login/chat.png' className='text-red-600 h-[19px] xl:h-[25px] ' />
-                        <span className='text-[12px] lg:text-[14px]'>Start sexting and post comments
-
-                        </span>
-                    </div>
-                </div>
 
                 <form className='flex flex-col items-center justify-start' onSubmit={handleSubmit} >
 
@@ -194,10 +173,10 @@ export const SignUpForm = () => {
                         Terms of Use and Privacy Policy.
                     </h2>
 
-                    <div className='mt-[18px]'>
+                    <div className='mt-[18px] w-full mb-6'>
                         {!loading &&
 
-                            <button type='submit' className='font-normal text-[14px] text-center w-[154px] h-[30px]   text-white hover:bg-button_hover bg-button rounded-[5px]  '>Continue</button>
+                            <button type='submit' className='transition duration-200 loginBTN_BG text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block'>Continue</button>
                         }
                         {loading &&
                             <div className='mx-auto'>
@@ -209,15 +188,31 @@ export const SignUpForm = () => {
                 </form>
 
 
-                <div className='flex flex-col items-center justify-center mt-[20px]'>
+                <button className="transition duration-200  pb-1 cursor-pointer  text-sm rounded-lg  block mx-auto font-arial ">
+                    <span className="inline-block ml-1">Already a user ?</span>
+
+                    <span onClick={gotoLogin} className=" inline-block ml-1 gradientBlue cursor-pointer">Login</span>
+                </button>
 
 
 
-                    <div className='flex items-center  space-x-[10px] ml-[15px]'>
-                        <h2 className='text-center text-[#323232]  font-inter  text-[13px]'>Existing user ?</h2>
+                <div className='flex items-center justify-center space-x-1 mt-4'>
 
-                        <button onClick={gotoLogin} type="submit" value="submit" className='font-normal text-[14px] text-center w-[80px] h-[30px]  border-[1px] border-button rounded-[5px] hover:bg-button text-[#323232] hover:text-white '>Sign In</button>
-                    </div>
+                    {/* <span className='border-[1px] border-gray-300 w-full'></span> */}
+                    <p className='text-[#323232] font-inter text-sm'>OR</p>
+                    {/* <span className='border-[1px] border-gray-300 w-full'></span> */}
+                </div>
+
+
+
+                <div className=' w-full  mt-[26px]  mx-auto items-center justify-center space-x-6 xl:space-x-8 px-6 flex'>
+
+                    <img onClick={() => SignIn('user/facebook')} src='/login/google.svg' className='lg:h-[48px] object-contain h-[38px]  cursor-pointer ml-1 transition-all duration-300 hover:scale-125'></img>
+
+                    <img onClick={() => SignIn('user/facebook')} src='/login/facebook.svg' className='lg:h-[48px] object-contain h-[38px]  cursor-pointer ml-1 transition-all duration-300 hover:scale-125'></img>
+
+                    <img onClick={() => SignIn('user/facebook')} src='/login/twitter.svg' className='lg:h-[48px] object-contain h-[38px]  cursor-pointer ml-1 transition-all duration-300 hover:scale-125'></img>
+
                 </div>
 
 

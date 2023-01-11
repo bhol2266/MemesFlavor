@@ -1,17 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { CheckCircleIcon } from '@heroicons/react/solid'
 import { XCircleIcon } from '@heroicons/react/solid'
-import Link from 'next/link'
-import videosContext from '../../context/videos/videosContext'
 import Router, { useRouter } from 'next/router';
 import ClipLoader from "react-spinners/ClipLoader";
 import { setCookie, deleteCookie, getCookie } from "cookies-next";
+import MemesContext from '../../context/MemesContext';
+
 
 export const SignUpFormOTP = () => {
     const router = useRouter();
     const { email } = router.query
 
-    const { setloggedIn, } = useContext(videosContext)
+    const { setloggedIn, } = useContext(MemesContext)
 
     const [OTP, setOTP] = useState('')
     const [loading, setloading] = useState(false);

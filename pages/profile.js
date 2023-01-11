@@ -78,7 +78,7 @@ const Profile = () => {
             <p className="font-inter text-[12px] lg:text-[14px] 2xl:text-[16px] text-textblack text-left">{description}</p>
 
 
-            <div className="my-8 flex items-center justify-center space-x-[90px] lg:space-x-[120px] 2xl:space-x-[130px]">
+            <div className="my-8 flex items-center justify-center space-x-[100px] lg:space-x-[120px] 2xl:space-x-[130px]">
 
                 <img onClick={() => { setseletedTab("grid") }} src={seletedTab === "grid" ? "/profile/grid_selected.svg" : "/profile/grid.svg"} alt="" className="object-contain h-[18px] lg:h-[20px]  2xl:h-[22px]" />
                 <img onClick={() => { setseletedTab("post") }} src={seletedTab === "post" ? "/profile/post_selected.svg" : "/profile/post.svg"} alt="" className="object-contain h-[18px] lg:h-[20px]  2xl:h-[22px]" />

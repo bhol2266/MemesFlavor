@@ -80,9 +80,9 @@ const Profile = () => {
 
             <div className="my-8 flex items-center justify-center space-x-[100px] lg:space-x-[120px] 2xl:space-x-[130px]">
 
-                <img onClick={() => { setseletedTab("grid") }} src={seletedTab === "grid" ? "/profile/grid_selected.svg" : "/profile/grid.svg"} alt="" className="object-contain h-[18px] lg:h-[20px]  2xl:h-[22px]" />
-                <img onClick={() => { setseletedTab("post") }} src={seletedTab === "post" ? "/profile/post_selected.svg" : "/profile/post.svg"} alt="" className="object-contain h-[18px] lg:h-[20px]  2xl:h-[22px]" />
-                <img onClick={() => { setseletedTab("media") }} src={seletedTab === "media" ? "/profile/media_selected.svg" : "/profile/media.svg"} alt="" className="object-contain h-[18px] lg:h-[20px]  2xl:h-[22px]" />
+                <img onClick={() => { setseletedTab("grid") }} src={seletedTab === "grid" ? "/profile/grid_selected.svg" : "/profile/grid.svg"} alt="" className="object-contain h-[38px] lg:h-[50px]  2xl:h-[52px] p-[10px] lg:p-[15px] cursor-pointer" />
+                <img onClick={() => { setseletedTab("post") }} src={seletedTab === "post" ? "/profile/post_selected.svg" : "/profile/post.svg"} alt="" className="object-contain h-[38px] lg:h-[50px]  2xl:h-[52px] p-[10px] lg:p-[15px] cursor-pointer" />
+                <img onClick={() => { setseletedTab("media") }} src={seletedTab === "media" ? "/profile/media_selected.svg" : "/profile/media.svg"} alt="" className="object-contain h-[38px] lg:h-[50px]  2xl:h-[52px] p-[10px] lg:p-[15px] cursor-pointer" />
 
             </div>
 

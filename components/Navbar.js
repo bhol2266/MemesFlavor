@@ -22,7 +22,7 @@ export const Navbar = () => {
 
     return (
         <div className={`shadow-lg select-none w-fit fixed left-0 top-0 bottom-0 z-10 bg-white hidden lg:block`}>
-            <img src='/navbar/memeflavour.svg' alt='' className=' mx-[26px]  h-[36px] 3xl:h-[40px] mb-[32px]' />
+            <img src='/navbar/memeflavour.svg' alt='' className=' mx-[26px]  h-[36px] 3xl:h-[40px] my-[32px]' />
 
             <div className=''>
 
@@ -38,6 +38,10 @@ export const Navbar = () => {
                 })}
             </div>
 
+
+            <div>
+
+            </div>
 
 
         </div >

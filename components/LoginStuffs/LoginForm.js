@@ -131,13 +131,13 @@ export const LoginForm = () => {
 
 
     return (
-        <div className={`bg-no-repeat bg-cover	bg-opacity-80 w-full mb-[200px] sm:w-4/5 md:w-3/5 lg:w-2/5 xl:w-[450px] mx-auto mt-[30px] lg:left-[110px] relative xl:left-0 xl:right-0`}>
+        <div className={`bg-no-repeat bg-cover	bg-opacity-80 w-full mb-[200px]  mt-[30px] lg:left-[110px] relative xl:left-0 xl:right-0`}>
 
 
 
 
 
-            <div className='px-[28px] lg:px-0  w-full'>
+<div className='px-[28px] xl:px-[60px] 2xl:px-[100px] lg:px-0  w-full'>
 
                 <img src='/navbar/memeflavour.svg' alt='' className='  h-[30px] sm:h-[34px] lg:hidden mx-auto' />
 

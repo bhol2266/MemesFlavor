@@ -56,7 +56,7 @@ function MyApp({ Component, pageProps }) {
 
 
         <Component {...pageProps} />
-        <Footer />
+        {/* <Footer /> */}
       </GlobalStates>
     </>
   )

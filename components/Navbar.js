@@ -8,6 +8,13 @@ export const Navbar = () => {
     const { youtuberLogo, setyoutuberLogo, NavbarUserORcreator, setNavbarUserORcreator } = useContext(MemesContext)
 
 
+    const navItems = [
+        { name: "Home", icon: "./navbar/Home.svg" },
+        { name: "Search", icon: "./navbar/Home.svg" },
+        { name: "Profile", icon: "./navbar/Home.svg" },
+        { name: "Notification", icon: "./navbar/Home.svg" },
+        { name: "Settings", icon: "./navbar/Home.svg" },
+    ]
 
 
     const router = useRouter()
@@ -20,10 +27,25 @@ export const Navbar = () => {
 
 
     return (
-        <div className={`shadow-lg select-none `}>
-            <h1 className='font-manrope text-[9px] lg:text-[14px] text-center text-white bg-[#54BAB9] py-2'>
-                USE COUPON  “  GHSGDHSSAHGAH9678  “  TO GET EXTRA 20% DISCOUNT
-            </h1>
+        <div className={`shadow-lg select-none w-fit fixed left-0 top-0 bottom-0 z-10 bg-white`}>
+
+            <div className='py-6'>
+
+                <img src='' alt='' className='h-[18px]' />
+
+
+                {navItems.map(obj => {
+
+                    return (
+                        <Link className={`flex items-center space-x-4 mt-2 3xl:mt-3 hover:hoverBackground group  px-10 pr-14 py-3 rounded`} key={obj.name} href='/'>
+                            <img src={obj.icon} alt='' className='h-[26px] 3xl:h-[28px]' />
+                            <h2 className='font-inter text-[18px] 3xl:text-[20px] text-textblack group-hover:text-white'>{obj.name}</h2>
+
+                        </Link>
+
+                    )
+                })}
+            </div>
 
 
 

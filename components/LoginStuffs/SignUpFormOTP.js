@@ -122,7 +122,7 @@ export const SignUpFormOTP = () => {
 
 
 
-            <div className='px-[28px]  w-full'>
+            <div className='px-[28px] lg:px-0  w-full'>
 
 
                 <h2 className='mt-[20px] font-inter text-[18px] text-[#323232]'>

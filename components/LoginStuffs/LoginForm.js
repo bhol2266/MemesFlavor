@@ -137,7 +137,7 @@ export const LoginForm = () => {
 
 
 
-            <div className='  w-full'>
+            <div className='px-[28px] lg:px-0  w-full'>
 
                 <img src='/navbar/memeflavour.svg' alt='' className='  h-[30px] sm:h-[34px] lg:hidden mx-auto' />
 
@@ -211,11 +211,11 @@ export const LoginForm = () => {
 
             <div className=' w-full  mt-[26px]  mx-auto items-center justify-center space-x-6 xl:space-x-8 px-6 flex'>
 
-                <img onClick={() => SignIn('user/facebook')} src='/login/google.svg' className='lg:h-[48px] object-contain h-[38px]  cursor-pointer ml-1 transition-all duration-300 hover:scale-125'></img>
+                <img onClick={() => SignIn('user/facebook')} src='/login/google.svg' className='lg:h-[55px] object-contain h-[46px]  cursor-pointer ml-1 transition-all duration-300 hover:scale-125'></img>
 
-                <img onClick={() => SignIn('user/facebook')} src='/login/facebook.svg' className='lg:h-[48px] object-contain h-[38px]  cursor-pointer ml-1 transition-all duration-300 hover:scale-125'></img>
+                <img onClick={() => SignIn('user/facebook')} src='/login/facebook.svg' className='lg:h-[55px] object-contain h-[46px]  cursor-pointer ml-1 transition-all duration-300 hover:scale-125'></img>
 
-                <img onClick={() => SignIn('user/facebook')} src='/login/twitter.svg' className='lg:h-[48px] object-contain h-[38px]  cursor-pointer ml-1 transition-all duration-300 hover:scale-125'></img>
+                <img onClick={() => SignIn('user/facebook')} src='/login/twitter.svg' className='lg:h-[55px] object-contain h-[46px]  cursor-pointer ml-1 transition-all duration-300 hover:scale-125'></img>
 
             </div>
 

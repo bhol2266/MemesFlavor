@@ -41,7 +41,7 @@ const Profile = () => {
 
                         {memeCategories.map((category, index) => {
                             return (
-                                <h2 className="font-inter  text-[#414249] text-[10px] lg:text-[14px]">{index === memeCategories.length - 1 ? category : `${category},`}</h2>
+                                <h2 key={category} className="font-inter  text-[#414249] text-[10px] lg:text-[14px]">{index === memeCategories.length - 1 ? category : `${category},`}</h2>
                             )
                         })}
                     </div>

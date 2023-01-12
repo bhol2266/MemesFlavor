@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+const post
+
 
 const Profile = () => {
 

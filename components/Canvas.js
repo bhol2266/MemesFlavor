@@ -303,7 +303,7 @@ const Canvas = () => {
                                             array.splice(selectedlanguages.indexOf(item), 1)
                                             setSelectedLanguage([...array])
                                         }
-                                    }} className={`${selectedlanguages.includes(item) ? "hoverBackground text-white" : ""} cursor-pointer text-center p-2 rounded-2xl font-inter font-medium text-[12px] lg:text-[14px] `} key={item}>{item}</h1>
+                                    }} className={`${selectedlanguages.includes(item) ? "hoverBackground text-white" : "text-[#414249]"} cursor-pointer text-center p-2 rounded-2xl font-inter font-medium text-[12px] lg:text-[14px] `} key={item}>{item}</h1>
                                 )
                             })}
                         </div>

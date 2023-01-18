@@ -23,7 +23,7 @@ const FontPicker = dynamic(() => import("font-picker-react"), {
     ssr: false,
 })
 
-const languages = ["Hindi", "Urdu", "Bhojpuri", "Rajastani", "Bangali", "Bihari", "English", "Marathi", "Haryanvi", "Other",]
+const languages = ["Hindi", "Urdu", "Bhojpuri", "Rajastani", "Bengali", "Bihari", "English", "Other",]
 
 
 
@@ -291,7 +291,7 @@ const Canvas = () => {
                             <img className='cursor-pointer h-[20px]  object-contain' src='canvas/iButton.svg' />
                         </div>
 
-                        <div className='grid grid-cols-5 gap-3 mt-2 select-none'>
+                        <div className='grid grid-cols-4 gap-3 mt-2 select-none'>
                             {languages.map(item => {
                                 return (
                                     <h1 onClick={() => {

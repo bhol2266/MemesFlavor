@@ -27,7 +27,7 @@ const BottomNavbar = () => {
                 {initialState.map((item, index) => {
                     return (
                         <Link key={item.name} href={item.href}>
-                            <img onClick={() => { setselectedNavItemIndex(index) }} src={selectedNavItemIndex === index ? item.src + "Selected.svg" : item.src + ".svg"} alt="" className="h-9 p-2 cursor-pointer" />
+                            <img onClick={() => { setselectedNavItemIndex(index) }} src={selectedNavItemIndex === index ? item.src + "Selected.svg" : item.src + ".svg"} alt="" className="h-10 p-2 cursor-pointer" />
                         </Link>
                     )
                 })}

@@ -5,10 +5,14 @@ const GlobalStates = (props) => {
 
 
 
-    return (
-        <MemesContext.Provider value={{
+    
+    const [selectedNavItemIndex, setselectedNavItemIndex] = useState(0); // this is need to set selected to false  in navItemClick func
     
 
+
+    return (
+        <MemesContext.Provider value={{
+            selectedNavItemIndex, setselectedNavItemIndex
         }}>
             {props.children}
         </MemesContext.Provider>

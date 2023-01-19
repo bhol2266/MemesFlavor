@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Link from "next/link";
+import MemesContext from "../context/MemesContext";
 
 
 var initialState = [
@@ -14,40 +15,19 @@ var initialState = [
 
 const BottomNavbar = () => {
 
-    const navItemClick = (item, index) => {
-        if (navItems[index].selected) {
-            return
-        }
-        let array = []
 
-        array = navItems.map((item, i) => {
-            if (index === i) {
-                return { ...item, selected: true };
-            }
-            if (selectedNavItemIndex === i) {
-                return { ...item, selected: false };
-            }
-            return item
-        });
+    const { selectedNavItemIndex, setselectedNavItemIndex } = useContext(MemesContext)
 
-        setnavItems(array);
-        setselectedNavItemIndex(index)
-
-    }
-
-
-    const [navItems, setnavItems] = useState(initialState);
-    const [selectedNavItemIndex, setselectedNavItemIndex] = useState(0); // this is need to set selected to false  in navItemClick func
     return (
 
         <div className=" lg:hidden fixed bottom-0 left-0 right-0">
             <div className=" mt-2  flex justify-around px-2 items-center z-10 py-3  bg-white topShadow ">
 
 
-                {navItems.map((item, index) => {
+                {initialState.map((item, index) => {
                     return (
                         <Link key={item.name} href={item.href}>
-                            <img onClick={() => { navItemClick(item, index) }}  src={item.selected ? item.src + "Selected.svg" : item.src + ".svg"} alt="" className="h-9 p-2 cursor-pointer" />
+                            <img onClick={() => { setselectedNavItemIndex(index) }} src={selectedNavItemIndex === index ? item.src + "Selected.svg" : item.src + ".svg"} alt="" className="h-9 p-2 cursor-pointer" />
                         </Link>
                     )
                 })}

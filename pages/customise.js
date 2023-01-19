@@ -4,6 +4,9 @@ const Customise = () => {
     return (
 
         <div className="px-[10px] lg:px-0 ">
+
+            <h1 className="font-inter text-[20px] text-center font-semibold p-2 shadow-lg">upload post</h1>
+
             <Canvas />
 
         </div>

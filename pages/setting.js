@@ -25,7 +25,7 @@ const Setting = () => {
 
 <h1 className="font-inter text-[20px] text-center font-semibold p-2 shadow-lg">settings</h1>
 
-            <div className="p-6 pt-8 flex flex-col space-y-8">
+            <div className="p-6 pl-10 pt-8 flex flex-col space-y-8">
                 {options.map(item => {
                     return (
                         <Link href={item.href} key={item.name} className="flex items-center space-x-5 lg:space-x-7 cursor-pointer">

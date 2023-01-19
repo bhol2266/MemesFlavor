@@ -201,26 +201,11 @@ const Canvas = () => {
                 <div className=''>
 
 
-                    <div className='grid grid-cols-2  gap-3  sm:px-6 w-full  mb-2'>
-
-
-                        <button onClick={removeSelectedItem} className=' text-white hover:bg-[#54BAB9] text-[12px] font-inter border-[1px] border-[#54BAB9] rounded-[5px] py-[7px] px-[10px] hoverBackground'>Remove Seleted</button>
-
-                        <button onClick={resetCanvas} className=' text-white hover:bg-[#54BAB9] text-[12px] font-inter border-[1px] border-[#54BAB9] rounded-[5px] py-[7px] px-[10px] hoverBackground'>Clear All</button>
-
-                        {/* <select placeholder='asdfsadf' className=' w-[140px] min-h-[30px] text-[14px] font-inter rounded-xl text-[#323232] border-[1px] border-[#E5E5E5] p-2 px-4  outline-none' value={imageScale} onChange={(e) => { setimageScale(e.target.value) }}>
-
-                            <option className='font-inter text-[#323232] text-[14px] my-4'  >Original</option>
-                            <option className='font-inter text-[#323232] text-[14px] my-4'  >Zoomed In</option>
-                            <option className='font-inter text-[#323232] text-[14px] my-4'  >Full</option>
-
-                        </select> */}
-                    </div>
 
                     <div>
                         {/* Canvas playground */}
-                        
-                        <div ref={divToImageRef} className={`select-none mx-auto flex items-center justify-center  relative w-fit  ${PreviewMode ? "pointer-events-none" : ""}`}>
+
+                        <div ref={divToImageRef} className={`pt-2 select-none mx-auto flex items-center justify-center  relative w-fit  ${PreviewMode ? "pointer-events-none" : ""}`}>
 
 
                             <img className={`bg-red-500 h-[406px] w-full rounded object-cover `} src={backgroundImageArray} />
@@ -253,19 +238,36 @@ const Canvas = () => {
                             </div>
 
                             <div className='flex items-center space-x-3'>
-                                <label className='cursor-pointer text-center text-white  text-[12px] font-inter rounded-[5px] py-[7px] px-[10px] hoverBackground' htmlFor='bgImage'>
+                                <label className='cursor-pointer text-center text-white  text-[12px] font-inter rounded-[5px] py-[5px] px-[8px] hoverBackground' htmlFor='bgImage'>
                                     Change Background
                                 </label>
                                 <input id='bgImage' onChange={uploadBackgroundImage} type="file" className="hidden" />
 
 
-                                <label className='cursor-pointer text-center text-white  text-[12px] font-inter rounded-[5px] py-[7px] px-[10px] hoverBackground' htmlFor='bgImage'>
+                                <label className='cursor-pointer text-center text-white  text-[12px] font-inter rounded-[5px] py-[5px] px-[8px] hoverBackground' htmlFor='bgImage'>
                                     Add Text
                                 </label>
                             </div>
 
 
                         </div>
+
+                        <div className='grid grid-cols-2  gap-3  sm:px-6 w-full  mt-3'>
+
+
+                            <button onClick={removeSelectedItem} className=' text-white hover:bg-[#54BAB9] text-[12px] font-inter border-[1px] border-[#54BAB9] rounded-[5px] py-[5px] px-[8px] hoverBackground'>Remove Seleted</button>
+
+                            <button onClick={resetCanvas} className=' text-white hover:bg-[#54BAB9] text-[12px] font-inter border-[1px] border-[#54BAB9] rounded-[5px] py-[5px] px-[8px] hoverBackground'>Clear All</button>
+
+                            {/* <select placeholder='asdfsadf' className=' w-[140px] min-h-[30px] text-[14px] font-inter rounded-xl text-[#323232] border-[1px] border-[#E5E5E5] p-2 px-4  outline-none' value={imageScale} onChange={(e) => { setimageScale(e.target.value) }}>
+
+    <option className='font-inter text-[#323232] text-[14px] my-4'  >Original</option>
+    <option className='font-inter text-[#323232] text-[14px] my-4'  >Zoomed In</option>
+    <option className='font-inter text-[#323232] text-[14px] my-4'  >Full</option>
+
+</select> */}
+                        </div>
+
 
 
                     </div>

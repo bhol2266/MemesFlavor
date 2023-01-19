@@ -6,7 +6,7 @@ import MemesContext from "../context/MemesContext";
 var initialState = [
     { name: "home", src: "/bottomNavbar/home", selected: true, href: "/" },
     { name: "search", src: "/bottomNavbar/search", selected: false, href: "/" },
-    { name: "bg", src: "/bottomNavbar/bg", selected: false, href: "/customise" },
+    { name: "bg", src: "/bottomNavbar/bg", selected: false, href: "/profile" },
     { name: "bell", src: "/bottomNavbar/bell", selected: false, href: "/" },
     { name: "setting", src: "/bottomNavbar/setting", selected: false, href: "/setting" }
 ]

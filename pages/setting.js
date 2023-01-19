@@ -8,7 +8,7 @@ import MemesContext from "../context/MemesContext";
 const options = [
     { name: "Upload Posts", src: "/setting/uploadpost", href: "/customise" },
     { name: "Posts Management", src: "/setting/post_management", href: "/" },
-    { name: "Account", src: "/setting/account", href: "/" },
+    { name: "Account", src: "/setting/account", href: "/account" },
     { name: "Ads & Analytics", src: "/setting/analytics", href: "/" },
     { name: "Funds", src: "/setting/funds", href: "/" },
     { name: "Help", src: "/setting/help", href: "/" },

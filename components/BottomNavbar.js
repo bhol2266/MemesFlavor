@@ -7,7 +7,7 @@ var initialState = [
     { name: "search", src: "/bottomNavbar/search", selected: false, href: "/" },
     { name: "bg", src: "/bottomNavbar/bg", selected: false, href: "/customise" },
     { name: "bell", src: "/bottomNavbar/bell", selected: false, href: "/" },
-    { name: "setting", src: "/bottomNavbar/setting", selected: false, href: "/" }
+    { name: "setting", src: "/bottomNavbar/setting", selected: false, href: "/setting" }
 ]
 
 

@@ -37,7 +37,7 @@ function MyApp({ Component, pageProps }) {
       <Script id='faasdfsdabric' src="/fabric.js" strategy="beforeInteractive" />
 
 
-      {/* <Script id='sadfasdf' src="https://unpkg.com/fabric@5.2.1/dist/fabric.min.js" strategy="beforeInteractive" /> */}
+      <Script id='sadfasdf' src="https://unpkg.com/fabric@5.2.1/dist/fabric.min.js" strategy="beforeInteractive" />
 
       <GlobalStates>
         <Navbar />

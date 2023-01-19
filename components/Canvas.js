@@ -219,6 +219,7 @@ const Canvas = () => {
 
                     <div>
                         {/* Canvas playground */}
+                        
                         <div ref={divToImageRef} className={`select-none mx-auto flex items-center justify-center  relative w-fit  ${PreviewMode ? "pointer-events-none" : ""}`}>
 
 

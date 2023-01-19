@@ -12,6 +12,7 @@ import { useContext } from 'react'
 import Script from 'next/script'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import BottomNavbar from '../components/BottomNavbar'
 
 
 
@@ -54,8 +55,10 @@ function MyApp({ Component, pageProps }) {
           theme="light"
         />
 
-        <div className='sm:w-4/5 md:w-3/5 relative lg:left-[100px] xl:left-0 xl:right-0 lg:w-[550px] xl:w-[500px] 2xl:w-[600px] 3xl:w-[650px] mx-auto'>
+        <div className=' sm:w-4/5 md:w-3/5 relative lg:left-[100px] xl:left-0 xl:right-0 lg:w-[550px] xl:w-[500px] 2xl:w-[600px] 3xl:w-[650px] mx-auto'>
           <Component {...pageProps} />
+          <BottomNavbar />
+
         </div>
         {/* <Footer /> */}
       </GlobalStates>

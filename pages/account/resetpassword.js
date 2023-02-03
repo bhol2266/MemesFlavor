@@ -26,7 +26,7 @@ const Resetpassword = () => {
             setloading(true)
 
             const parcelData = { code: code, password: password, passwordConfirmation: retypePassword }
-            const rawResponse = await fetch(`${process.env.BACKEND_URL}api/auth/forgot-password`, {
+            const rawResponse = await fetch(`${process.env.BACKEND_URL}api/auth/reset-password`, {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'

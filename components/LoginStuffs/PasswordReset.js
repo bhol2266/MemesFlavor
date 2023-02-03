@@ -17,6 +17,7 @@ export const PasswordReset = () => {
 
 
     const updatePassword = async (e) => {
+        e.preventDefault()
 
         try {
             setloading(true)

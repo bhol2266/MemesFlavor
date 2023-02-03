@@ -37,8 +37,7 @@ const Resetpassword = () => {
 
             const res = await rawResponse.json();
 
-        s);
-
+        
             if (rawResponse.status === 400) {
                 toast.error("something went wrong")
             }

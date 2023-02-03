@@ -37,6 +37,7 @@ const Resetpassword = () => {
 
             const res = await rawResponse.json();
 
+            console.log(parcelData);
             console.log(res);
 
             if (rawResponse.status === 400) {

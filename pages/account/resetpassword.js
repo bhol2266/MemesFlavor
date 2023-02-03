@@ -37,8 +37,7 @@ const Resetpassword = () => {
 
             const res = await rawResponse.json();
 
-            console.log(parcelData);
-            console.log(res);
+        s);
 
             if (rawResponse.status === 400) {
                 toast.error("something went wrong")
@@ -46,7 +45,7 @@ const Resetpassword = () => {
 
             if (rawResponse.status === 200) {
                 toast.info("Password updated!")
-                router.push('/login')
+                router.push('/account/login')
             }
 
        

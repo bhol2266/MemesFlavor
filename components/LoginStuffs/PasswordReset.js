@@ -76,8 +76,7 @@ export const PasswordReset = () => {
 
 
 
-
-            <div className='px-[28px]  w-full'>
+            <form onSubmit={updatePassword} className='px-[28px]  w-full'>
 
 
                 <h2 className='my-[20px]  mb-[30px] font-inter text-[18px] text-[#323232]'>
@@ -103,7 +102,7 @@ export const PasswordReset = () => {
 
                 <div className='h-[40px] mt-6'>
                     {!loading &&
-                        <button onClick={updatePassword} className="transition duration-200 loginBTN_BG text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
+                        <button type='submit' className="transition duration-200 loginBTN_BG text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
                             {!loading && <span className="inline-block mr-2">Send Verification Email</span>}
                             {!loading && <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-4 h-4 inline-block">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -131,7 +130,7 @@ export const PasswordReset = () => {
 
 
 
-            </div>
+            </form>
 
 
         </div>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { getCookie } from 'cookies-next';
 
 
 
@@ -94,3 +95,40 @@ const Profile = () => {
     )
 };
 export default Profile;
+
+
+export async function getServerSideProps(context) {
+
+
+    try {
+        const rawResponse = await fetch(`${process.env.BACKEND_URL}api/accounts`, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + getCookie('refreshToken', context)
+
+            },
+            method: 'get',
+        });
+
+        const res = await rawResponse.json();
+        console.log(res);
+        if (res.message === "Empty Account Info") {
+            return {
+                redirect: {
+                    permanent: false,
+                    destination: "/account",
+                },
+                props: {},
+            };
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
+
+
+    return {
+        props: {}, // will be passed to the page component as props
+    }
+}

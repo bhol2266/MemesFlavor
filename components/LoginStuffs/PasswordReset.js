@@ -65,10 +65,7 @@ export const PasswordReset = () => {
     }
 
 
-    const email_exists = async (email) => {
-
-    };
-
+  
 
     return (
 

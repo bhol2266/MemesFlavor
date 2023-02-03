@@ -6,6 +6,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import Router, { useRouter } from 'next/router'
 import { setCookie, deleteCookie } from "cookies-next";
 import MemesContext from '../../context/MemesContext';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 export const SignUpForm = () => {
@@ -21,28 +22,15 @@ export const SignUpForm = () => {
     const [message, setmessage] = useState('');
     const [loading, setloading] = useState(false);
     const [Country, setCountry] = useState('');
+    const [username, setusername] = useState('');
+    const [usenameAvailability, setusenameAvailability] = useState(false);
 
 
     useEffect(() => {
-        getLocation();
+        // getLocation();
     }, [])
 
-    async function getLocation() {
 
-        try {
-            const response = await fetch('https://api.db-ip.com/v2/free/self')
-            const data = await response.json();
-            setCountry(data.countryName)
-            setCookie('country', data.countryName, { maxAge: 900000 })
-
-        } catch (error) {
-            const response = await fetch(' https://geolocation-db.com/json/8dd79c70-0801-11ec-a29f-e381a788c2c0')
-            const data = await response.json();
-            setCountry(data.country_name)
-            setCookie('country', data.country_name, { maxAge: 900000 })
-        }
-
-    }
     const validateEmail = (email) => {
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
             return (true)
@@ -57,25 +45,37 @@ export const SignUpForm = () => {
 
     }
 
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         setmessage('')
 
         if (Email.length > 10 && !validateEmail(Email)) {
-            alert("Please Enter Email correctly")
+              toast.info("Please Enter Email correctly")
             return
         }
 
         if (password != confirmPassword) {
-            alert("Confirm Password Incorrect")
+              toast.info("Confirm Password Incorrect")
             return
         }
+        if (!usenameAvailability) {
+              toast.info("Usermame not available")
+            return
+        }
+
+        https://meme-strapi.onrender.com/api/check/userexist
+
+
+
 
         setloading(true)
 
         try {
-            const parcelData = { firstName: firstName.trim(), lastName: lastName.trim(), email: Email.trim(), password: password, country: Country }
-            const rawResponse = await fetch(`${process.env.FRONTEND_URL}api/login/register`, {
+
+
+            const parcelData = { email: firstName.trim(), username: username.trim(), email: Email.trim(), password: password, firstName: firstName, lastName: lastName }
+            const rawResponse = await fetch(`${process.env.BACKEND_URL}api/auth/local/register`, {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
@@ -84,28 +84,41 @@ export const SignUpForm = () => {
                 body: JSON.stringify(parcelData),
             });
 
-            const res = await rawResponse.json();
-            console.log(res);
-
-            if (res.message === 'Already Resgistered') {
-                setmessage('Already Resgistered !')
+            if (rawResponse.status === 400) {
+                  toast.info('Already Resgistered !')
             }
-            if (res.message === 'OTP Sent') {
-                Router.push({
-                    pathname: `/account/verifyOTP`,
-                    query: { email: Email }
-                })
+
+            if (rawResponse.status === 200) {
+                  toast.info('Activation Email sent!')
+                router.push('/account/login')
             }
 
             setloading(false)
         } catch (error) {
             setloading(false)
             console.log(error);
-            alert(error);
+              toast.info(error);
             return
         }
 
     }
+
+
+    const validateUserName = async (username) => {
+        const usernameExist = await fetch(`${process.env.BACKEND_URL}api/check/userexist`, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: 'POST',
+            body: JSON.stringify({ identifier: username.trim() }),
+        });
+
+        const userExist = await usernameExist.json();
+        setusenameAvailability(userExist.success)
+    };
+
+
 
 
 
@@ -116,12 +129,14 @@ export const SignUpForm = () => {
 
 
 
+
         <div className={`bg-no-repeat bg-cover	bg-opacity-80 w-full mb-[200px]  mt-[30px] lg:left-[110px] relative xl:left-0 xl:right-0`}>
 
 
 
 
-<div className='px-[28px] xl:px-[60px] 2xl:px-[100px] lg:px-0  w-full'>
+
+            <div className='px-[28px] xl:px-[60px] 2xl:px-[100px] lg:px-0  w-full'>
 
                 <img src='/navbar/memeflavour.svg' alt='' className='  h-[30px] sm:h-[34px] lg:hidden mx-auto' />
 
@@ -149,6 +164,20 @@ export const SignUpForm = () => {
                     </div>
 
 
+                    <div className=' relative flex items-center justify-between   text-[#323232] rounded-lg   border-[1px] border-gray-400 w-full  outline-none text-sm xl:text--md mt-[23px] placeholder:text-gray-400 bg-transparent '>
+                        <input minLength={4} required onChange={e => setusername(e.target.value)
+                        } className='rounded-lg w-full p-2 px-3 bg-transparent outline-none' type='text' placeholder='User name' name='username' id='username' />
+
+                        {username.length > 3 &&
+                            <div className='absolute right-2'>
+                                {console.log(validateUserName(username))}
+                                <CheckCircleIcon className={`text-green-400 h-[20px] ${usenameAvailability ? "" : "hidden"}`} />
+                                <XCircleIcon className={`text-red-400 h-[20px] ${!usenameAvailability ? "" : "hidden"}`} />
+                            </div>
+                        }
+
+                    </div>
+
 
 
 
@@ -160,16 +189,16 @@ export const SignUpForm = () => {
 
                     {/* <input required={true} value={phone} onChange={(e) => { if (e.target.value.length <= 10) { setphone(e.target.value) } }} className='p-2 px-3  text-[#323232] rounded-lg   border-[1px] border-gray-400 w-full  outline-none text-sm xl:text--md mt-[23px] placeholder:text-gray-400 bg-transparent ' type='number' placeholder='Phone' maxLength={10} /> */}
 
-                    <input required onChange={e => setpassword(e.target.value)} className='p-2 px-3  text-[#323232] rounded-lg   border-[1px] border-gray-400 w-full  outline-none text-sm xl:text--md mt-[23px] placeholder:text-gray-400 bg-transparent ' type='password' placeholder='Password' name='password' />
+                    <input required onChange={e => setpassword(e.target.value)} className='p-2 px-3  text-[#323232] rounded-lg   border-[1px] border-gray-400 w-full  outline-none text-sm xl:text--md mt-[23px] placeholder:text-gray-400 bg-transparent ' type='password' placeholder='Password' minLength={6} name='password' />
 
-                    <input required onChange={e => setconfirmPassword(e.target.value)} className='p-2 px-3  text-[#323232] rounded-lg   border-[1px] border-gray-400 w-full  outline-none text-sm xl:text--md mt-[23px] placeholder:text-gray-400 bg-transparent ' type='password' placeholder='Confirm Password' />
+                    <input required onChange={e => setconfirmPassword(e.target.value)} className='p-2 px-3  text-[#323232] rounded-lg   border-[1px] border-gray-400 w-full  outline-none text-sm xl:text--md mt-[23px] placeholder:text-gray-400 bg-transparent ' type='password' minLength={6} placeholder='Confirm Password' />
 
                     <div className='h-[20px]'>
                         <p className={` rounded text-center  w-full text-md text-button mt-1 font-semiboldpx-1 pt-1 ${message.length > 0 ? "visible" : "invisible"}`}>{message}</p>
                     </div>
 
                     {/* Bottom */}
-                    <h2 className='text-center w-full text-[#323232]  font-inter text-[12px] mt-[26px]'>By continuing, you agree to Chutlunds&apos;s
+                    <h2 className='text-center w-full text-[#323232]  font-inter text-[12px] mt-[26px]'>By continuing, you agree to Memeflavor&apos;s
                         Terms of Use and Privacy Policy.
                     </h2>
 
@@ -179,7 +208,7 @@ export const SignUpForm = () => {
                             <button type='submit' className='transition duration-200 loginBTN_BG text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block'>Continue</button>
                         }
                         {loading &&
-                            <div className='mx-auto'>
+                            <div className='flex items-center justify-center'>
                                 <ClipLoader color='#323232' size={24} />
                             </div>
                         }

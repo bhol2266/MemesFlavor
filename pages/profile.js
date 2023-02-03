@@ -25,7 +25,7 @@ const Profile = () => {
 
     return (
 
-        <div className="px-[24px] lg:px-[50px] py-[30px] ">
+        <div className="px-[15px] lg:px-[50px] py-[30px]  pb-[80px]">
 
             <div className="flex space-x-3 lg:space-x-5 2xl:space-x-7">
                 <img src={profile_Dp} alt="" className="h-[90px] xl:h-[100px]" />

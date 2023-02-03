@@ -7,6 +7,7 @@ import Cookies from 'js-cookie'
 import ClipLoader from "react-spinners/ClipLoader";
 import { setCookie, getCookie } from "cookies-next";
 import MemesContext from '../../context/MemesContext'
+import { ToastContainer, toast } from 'react-toastify';
 
 
 
@@ -29,13 +30,7 @@ export const LoginForm = () => {
 
 
     useEffect(() => {
-        if (typeof getCookie('email') !== 'undefined') {
-            router.push('/')
-        }
-
         getLocation()
-
-
     }, []);
 
     async function getLocation() {
@@ -59,16 +54,16 @@ export const LoginForm = () => {
         router.push(`/api/${route}`)
     }
 
+
     const submitForm = async (event) => {
 
         event.preventDefault();
         setmessage('')
         setloading(true)
 
-
         try {
-            const parcelData = { email: email.trim(), password: password }
-            const rawResponse = await fetch(`${process.env.FRONTEND_URL}api/login/login`, {
+            const parcelData = { identifier: email.trim(), password: password }
+            const rawResponse = await fetch(`${process.env.BACKEND_URL}api/auth/local`, {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
@@ -79,33 +74,28 @@ export const LoginForm = () => {
 
             const res = await rawResponse.json();
             console.log(res);
+            setCookie('refreshToken', res.jwt);
+            setCookie('email', email.trim());
+
             setloading(false)
 
-            if (res.message === 'OTP Sent') {
-                setOTPemail(res.data.email)
-                Router.push({
-                    pathname: `/account/verifyOTP`,
-                    query: { email: email.trim() }
-                })
-            }
-
-            if (res.message === 'Password Incorrect') {
-                setmessage("Password Incorrect !")
-                return
-            }
-            if (res.message === 'User not found') {
-                setmessage("User not found !")
+            if (rawResponse.status === 200) {
+                toast.info("Sucessfull")
+                router.push('/profile')
                 return
             }
 
-            if (res.message === 'Logged In') {
-                setCookie('email', res.data.email, { maxAge: 900000 });
-                setCookie('account', 'credential', { maxAge: 900000 });
-                setCookie('membership', res.data.membership, { maxAge: 900000 });
-                setloggedIn(true)
-                router.push('/')
-
+            if (res.error.message === 'Your account email is not confirmed') {
+                toast.info("Activate your account from your email")
+                return
             }
+
+            if (res.error.message === 'Invalid identifier or password') {
+                toast.error("Credentials Incorrect")
+                return
+            }
+
+
 
 
         } catch (error) {
@@ -137,7 +127,7 @@ export const LoginForm = () => {
 
 
 
-<div className='px-[28px] xl:px-[60px] 2xl:px-[100px] lg:px-0  w-full'>
+            <div className='px-[28px] xl:px-[60px] 2xl:px-[100px] lg:px-0  w-full'>
 
                 <img src='/navbar/memeflavour.svg' alt='' className='  h-[30px] sm:h-[34px] lg:hidden mx-auto' />
 
@@ -196,7 +186,7 @@ export const LoginForm = () => {
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-4 h-4 inline-block align-text-top">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
                 </svg>
-                <span className="inline-block ml-1">Forgot Password</span>
+                <span onClick={() => router.push('/account/forgotPassword')} className="inline-block ml-1">Forgot Password</span>
             </button>
 
 

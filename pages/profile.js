@@ -105,10 +105,10 @@ export async function getServerSideProps(context) {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': "Bearer " + getCookie('refreshToken', context)
+                'Authorization': "Bearer " + getCookie('jwt', context)
 
             },
-            method: 'get',
+            method: 'GET',
         });
 
         const res = await rawResponse.json();

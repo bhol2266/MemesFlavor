@@ -73,8 +73,9 @@ export const LoginForm = () => {
             });
 
             const res = await rawResponse.json();
-            console.log(res);
-            setCookie('refreshToken', res.jwt);
+            setCookie('refreshToken', res.refreshToken);
+            setCookie('username', res.user.username);
+            setCookie('jwt', res.jwt);
             setCookie('email', email.trim());
 
             setloading(false)

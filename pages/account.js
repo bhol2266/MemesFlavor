@@ -1,18 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import Link from "next/link";
+import { getCookie } from 'cookies-next';
+import { ToastContainer, toast } from 'react-toastify';
+import { rule } from "postcss";
+import { refreshTokenfunc } from "../lib/RefreshTokenAPI";
+import axios from "axios";
 
 const categories = ["Dank", "Shitpost", "Religious", "Political", "Normal", "Normie", "Others", "Cringe",]
 
 
 const Account = () => {
     const [selectedCategories, setselectedCategories] = useState([]);
-    const [displayName, setdisplayName] = useState('');
+    const [displayName, setdisplayName] = useState("");
     const [bio, setbio] = useState('');
     const [applyVerification, setapplyVerification] = useState(false);
     const [password, setpassword] = useState('')
     const [confirmPassword, setconfirmPassword] = useState('')
     const [loading, setloading] = useState(false);
+    const [DP, setDP] = useState("/profile/user.png");
 
     const verificationSwitch = (e) => {
         setapplyVerification(e.target.checked)
@@ -24,9 +30,98 @@ const Account = () => {
 
     }
 
-    const saveClick = () => {
+    async function loadPreData() {
+        setdisplayName(getCookie("username"))
+        try {
+            const rawResponse = await fetch(`${process.env.BACKEND_URL}api/accounts`, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': "Bearer " + getCookie('jwt')
+
+                },
+                method: 'GET',
+            });
+
+            const res = await rawResponse.json();
+            setbio(res.data.bio)
+            setDP(res.data.displayPicture)
+            console.log(res.data.displayPicture)
+            setselectedCategories(res.data.category)
+
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
+
+    useEffect(() => {
+        loadPreData()
+    }, [])
+
+
+
+    const saveClick = async () => {
         // save setting by calling api
 
+
+        const data = { bio: bio, category: selectedCategories, creatorMode: false, applyVerification: applyVerification, displayName: displayName }
+
+
+        if (bio.length === 0) {
+            toast.info("Enter a short bio")
+            return
+        }
+        if (displayName.length === 0) {
+            toast.info("Enter Display name")
+            return
+        }
+
+        if (selectedCategories.length === 0) {
+            toast.info("Select categories")
+            return
+        }
+
+
+        setloading(true)
+
+        const formdata = new FormData();
+        formdata.append("data", JSON.stringify(data));
+        formdata.append("imageData", DP);
+
+
+        await refreshTokenfunc()
+
+
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", "Bearer " + getCookie('jwt'));
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: formdata,
+            redirect: 'follow'
+        };
+
+        fetch("https://meme-strapi.onrender.com/api/accounts", requestOptions)
+            .then(response => response.text())
+            .then(result => {
+                console.log(result); toast.info("Account details updated"); setloading(false)
+            })
+            .catch(error => { console.log('error', error); setloading(false) });
+
+
+
+    }
+
+    const uploadProfileImage = (e) => {
+        // setDP(URL.createObjectURL(e.target.files[0]))
+        var reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+        reader.onloadend = function () {
+            var base64data = reader.result;
+            setDP(base64data)
+        }
 
     }
 
@@ -36,9 +131,23 @@ const Account = () => {
         <div className=" pb-[80px]">
             <h1 className="font-inter text-[20px] text-center font-semibold p-2 shadow-lg ">account</h1>
 
+
             <div className="px-[15px] lg:px-[50px] pt-[10px] ">
 
-                <div className="p-4 border-[0.5px] border-[#FAFAFA] rounded-lg">
+
+                <div className="flex items-center justify-around">
+                    <img src={DP} alt="" className="h-[100px] w-[100px] rounded-full" />
+
+                    <label className='cursor-pointer text-center text-white  text-[12px] font-inter rounded-[5px] py-[5px] px-[10px] hoverBackground' htmlFor='bgImage'>
+                        Change DP
+                    </label>
+                    <input id='bgImage' onChange={uploadProfileImage} type="file" className="hidden" />
+
+
+                </div>
+
+
+                <div className="py-4 border-[0.5px] border-[#FAFAFA] rounded-lg mt-4">
                     <div className="flex items-center justify-between ">
                         <div className="flex items-center space-x-2">
                             <h2 className="font-inter font-semibold  text-[14px] lg:text-[17px]   text-[#09101D]">Apply verification</h2>
@@ -86,7 +195,7 @@ const Account = () => {
                 <div className='my-8'>
                     <div>
                         <label htmlFor="tag" className="block mb-1 text-[12px] lg:text-[14px] font-medium text-[#414249] font-inter pl-1">Display Name</label>
-                        <input onChange={(e) => setdisplayName(e.target.value)} value={displayName} type="text" id="displayname" className="font-medium border-[0.5px] border-[#CACACA] outline-none font-inter text-[#414249] text-[12px] lg:text-[14px] rounded-lg  block w-full p-2.5 0" placeholder="@badaal001" required />
+                        <input disabled onChange={(e) => setdisplayName(e.target.value)} value={displayName} type="text" id="displayname" className="font-medium border-[0.5px] border-[#CACACA] outline-none font-inter text-[#414249] text-[12px] lg:text-[14px] rounded-lg  block w-full p-2.5 0" placeholder="@badaal001" required />
                     </div>
 
                     <div className='mt-4'>
@@ -113,7 +222,7 @@ const Account = () => {
                     </div>
 
 
-                    <div className='mt-[18px] w-full py-4'>
+                    <div className='mt-[18px] w-full py-4 flex items-center justify-center'>
                         {!loading &&
 
                             <button onClick={saveClick} className='transition duration-200 loginBTN_BG text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block'>Save</button>
